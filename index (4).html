@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Programming Hack — Belajar Coding 3 Bulan Bersama Praktisi | Ahademy Code</title>
+<meta name="description" content="Belajar web programming 3 bulan langsung dari praktisi, tanpa perlu latar belakang IT. Roadmap belajar yang jelas untuk membuka peluang di industri teknologi. Kuota terbatas per sesi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --bg-soft:#F7F8FB;
+    --ink:#1D2230;
+    --ink-soft:#6B7280;
+    --line:#E7E9F1;
+    --primary:#4F46E5;
+    --primary-soft:#EEF0FE;
+    --primary-dark:#3730A3;
+    --mint:#0D9488;
+    --mint-soft:#ECFDF9;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .font-display{font-family:'Plus Jakarta Sans',sans-serif}
+
+  .hero-glow{
+    background:
+      radial-gradient(55% 50% at 82% 8%, rgba(79,70,229,0.09), transparent 70%),
+      radial-gradient(40% 35% at 8% 12%, rgba(13,148,136,0.07), transparent 70%);
+  }
+
+  .btn-primary{
+    background:var(--primary);
+    color:#fff;
+    transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+    box-shadow: 0 8px 20px -8px rgba(79,70,229,0.5);
+  }
+  .btn-primary:hover{ background:var(--primary-dark); transform:translateY(-1px); }
+  .btn-ghost{
+    background:#fff; color:var(--ink); border:1px solid var(--line);
+    transition: border-color .2s ease, transform .15s ease;
+  }
+  .btn-ghost:hover{ border-color:#C7CBDB; transform:translateY(-1px); }
+
+  .card{ background:#fff; border:1px solid var(--line); border-radius:22px; }
+
+  .icon-check{
+    width:20px; height:20px; flex-shrink:0; color:var(--mint);
+  }
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-scale{opacity:0; transform:scale(.96); transition:opacity .8s ease, transform .8s ease;}
+  .reveal-scale.in{opacity:1; transform:scale(1);}
+
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+
+  /* section pill nav */
+  .pill-nav a{
+    color:var(--ink-soft); font-size:14px; font-weight:500;
+    padding:8px 16px; border-radius:999px; white-space:nowrap;
+    transition:color .2s ease, background .2s ease;
+  }
+  .pill-nav a.active{ color:var(--primary-dark); background:var(--primary-soft); }
+
+  /* carousel */
+  .carousel{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:4px;
+  }
+  .carousel::-webkit-scrollbar{ display:none; }
+  .carousel > *{ scroll-snap-align:start; flex-shrink:0; }
+
+  .dot{ width:7px; height:7px; border-radius:999px; background:var(--line); transition:background .25s ease, width .25s ease; }
+  .dot.active{ background:var(--primary); width:20px; border-radius:999px; }
+
+  .carousel-btn{
+    width:42px; height:42px; border-radius:999px; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; background:#fff;
+    transition:border-color .2s ease, transform .15s ease;
+  }
+  .carousel-btn:hover{ border-color:#C7CBDB; transform:translateY(-1px); }
+  .carousel-btn:disabled{ opacity:.35; pointer-events:none; }
+
+  .stat-num{ font-variant-numeric: tabular-nums; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal-scale{transition:none !important; opacity:1 !important; transform:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="font-display font-bold text-lg tracking-tight text-[var(--ink)]">
+      Ahademy<span class="text-[var(--primary)]">Code</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-[var(--ink-soft)]">
+      <a href="#materi" class="px-3 py-2 hover:text-[var(--ink)] transition-colors">Materi</a>
+      <a href="#bukti" class="px-3 py-2 hover:text-[var(--ink)] transition-colors">Bukti Nyata</a>
+      <a href="#harga" class="px-3 py-2 hover:text-[var(--ink)] transition-colors">Harga</a>
+      <a href="#faq" class="px-3 py-2 hover:text-[var(--ink)] transition-colors">FAQ</a>
+    </nav>
+    <a href="https://order.ahademycode.com/wph-1" target="_blank" rel="noopener"
+       class="btn-primary inline-flex items-center gap-2 font-semibold text-sm px-5 py-2.5 rounded-full">
+      Daftar
+    </a>
+  </div>
+  <!-- section pill nav -->
+  <div class="pill-nav border-t border-[var(--line)] overflow-x-auto" style="scrollbar-width:none">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 flex items-center gap-1 h-11">
+      <a href="#top" data-nav="top" class="active">Ringkasan</a>
+      <a href="#solusi" data-nav="solusi">Program</a>
+      <a href="#materi" data-nav="materi">Materi</a>
+      <a href="#bukti" data-nav="bukti">Bukti Nyata</a>
+      <a href="#harga" data-nav="harga">Harga</a>
+      <a href="#faq" data-nav="faq">FAQ</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="hero-glow pt-32 pb-16 md:pt-40 md:pb-20">
+  <div class="max-w-4xl mx-auto px-5 md:px-8 text-center reveal">
+    <span class="inline-flex items-center text-xs font-semibold text-[var(--primary-dark)] bg-[var(--primary-soft)] px-4 py-1.5 rounded-full">
+      Kelas terbatas — 50 peserta per sesi
+    </span>
+    <h1 class="mt-6 font-display font-extrabold text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.08] tracking-tight text-[var(--ink)]">
+      Belajar Web Programming Selama 3 Bulan, Bersama Mentor yang Sudah Terjun di Industri
+    </h1>
+    <p class="mt-6 text-[var(--ink-soft)] text-lg leading-relaxed max-w-2xl mx-auto">
+      Kamu nggak perlu latar belakang IT untuk mulai. Ikuti roadmap belajar yang terstruktur dan pelajari langsung dari pengalaman mentor yang sudah lebih dulu bekerja di industri web programming.
+    </p>
+    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="https://order.ahademycode.com/wph-1" target="_blank" rel="noopener"
+         class="btn-primary inline-flex items-center justify-center gap-2 font-semibold px-7 py-3.5 rounded-full text-[15px] w-full sm:w-auto">
+        Daftar Webinar Sekarang
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#materi" class="btn-ghost inline-flex items-center justify-center gap-2 font-semibold px-7 py-3.5 rounded-full text-[15px] w-full sm:w-auto">
+        Lihat Materi
+      </a>
+    </div>
+    <p class="mt-4 text-sm text-[var(--ink-soft)]">
+      <span class="line-through opacity-60">Rp250.000</span>
+      <span class="text-[var(--primary-dark)] font-semibold">Rp99.000</span> untuk peserta sesi ini
+    </p>
+  </div>
+
+  <div class="reveal-scale max-w-5xl mx-auto px-5 md:px-8 mt-14">
+    <div class="rounded-[28px] overflow-hidden border border-[var(--line)] shadow-[0_30px_60px_-30px_rgba(29,34,48,0.25)]">
+      <img src="https://images.pexels.com/photos/3888151/pexels-photo-3888151.jpeg?auto=compress&cs=tinysrgb&w=1600"
+           alt="Layar laptop menampilkan kode program, suasana belajar web programming" class="w-full h-[240px] sm:h-[360px] md:h-[440px] object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS STRIP ============ -->
+<section class="py-12 border-y border-[var(--line)] bg-[var(--bg-soft)]">
+  <div class="max-w-5xl mx-auto px-5 md:px-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+    <div class="reveal">
+      <p class="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)]"><span class="stat-num" data-count="3">0</span> Bulan</p>
+      <p class="mt-1 text-sm text-[var(--ink-soft)]">Roadmap belajar</p>
+    </div>
+    <div class="reveal">
+      <p class="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)]"><span class="stat-num" data-count="5">0</span> Modul</p>
+      <p class="mt-1 text-sm text-[var(--ink-soft)]">Materi inti</p>
+    </div>
+    <div class="reveal">
+      <p class="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)]"><span class="stat-num" data-count="50">0</span></p>
+      <p class="mt-1 text-sm text-[var(--ink-soft)]">Kursi per sesi</p>
+    </div>
+    <div class="reveal">
+      <p class="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)]"><span class="stat-num" data-count="100">0</span>%</p>
+      <p class="mt-1 text-sm text-[var(--ink-soft)]">Garansi uang kembali</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-12 items-center">
+    <div class="reveal order-2 md:order-1">
+      <img src="https://ahademycode.com/wp-content/uploads/2024/05/Stress-pria-koding-uncompressed-min.png" alt="Ilustrasi belajar coding tanpa arah yang jelas" class="rounded-3xl w-full max-w-sm mx-auto md:mx-0">
+    </div>
+    <div class="reveal order-1 md:order-2">
+      <p class="text-sm font-semibold text-[var(--primary-dark)]">Tantangan yang sering dialami</p>
+      <h2 class="mt-3 font-display font-bold text-3xl md:text-[2.1rem] leading-tight text-[var(--ink)]">
+        Belajar coding sendirian itu melelahkan kalau nggak tahu harus mulai dari mana
+      </h2>
+      <p class="mt-5 text-[var(--ink-soft)] leading-relaxed">
+        Banyak yang mencoba belajar coding secara otodidak lewat video gratis, tapi akhirnya berhenti di tengah jalan karena materinya terpisah-pisah dan nggak ada arah yang jelas mau dibawa ke mana.
+      </p>
+      <p class="mt-4 text-[var(--ink-soft)] leading-relaxed">
+        Yang sering jadi pembeda adalah <span class="text-[var(--ink)] font-medium">roadmap belajar yang runtut</span> dan bimbingan dari orang yang sudah lebih dulu menjalani prosesnya.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUTION ============ -->
+<section id="solusi" class="py-20 md:py-28 bg-[var(--bg-soft)] border-y border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-sm font-semibold text-[var(--primary-dark)]">Program kami</p>
+      <h2 class="mt-3 font-display font-bold text-3xl md:text-[2.1rem] leading-tight text-[var(--ink)]">
+        Kenalin, Web Programming Hack
+      </h2>
+      <p class="mt-5 text-[var(--ink-soft)] leading-relaxed">
+        Kelas yang dirancang untuk membantumu memahami dasar web programming secara terstruktur, langsung dari praktisi yang berbagi pengalaman nyata mereka bekerja di industri ini.
+      </p>
+    </div>
+
+    <div class="mt-12 grid sm:grid-cols-3 gap-6">
+      <div class="reveal card overflow-hidden">
+        <img src="https://images.pexels.com/photos/30234382/pexels-photo-30234382.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Belajar terstruktur dengan catatan dan laptop" class="w-full h-44 object-cover">
+        <div class="p-6">
+          <h3 class="font-display font-semibold text-lg text-[var(--ink)]">Belajar terstruktur</h3>
+          <p class="mt-2 text-sm text-[var(--ink-soft)] leading-relaxed">Materi disusun bertahap supaya kamu nggak bingung harus mulai dari mana.</p>
+        </div>
+      </div>
+      <div class="reveal card overflow-hidden">
+        <img src="https://images.pexels.com/photos/5483075/pexels-photo-5483075.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Praktik langsung menulis kode di laptop" class="w-full h-44 object-cover">
+        <div class="p-6">
+          <h3 class="font-display font-semibold text-lg text-[var(--ink)]">Studi kasus nyata</h3>
+          <p class="mt-2 text-sm text-[var(--ink-soft)] leading-relaxed">Belajar dari pengalaman langsung mentor, bukan cuma teori di slide.</p>
+        </div>
+      </div>
+      <div class="reveal card overflow-hidden">
+        <img src="https://images.pexels.com/photos/28579172/pexels-photo-28579172.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Suasana belajar santai dan ramah pemula" class="w-full h-44 object-cover">
+        <div class="p-6">
+          <h3 class="font-display font-semibold text-lg text-[var(--ink)]">Ramah pemula</h3>
+          <p class="mt-2 text-sm text-[var(--ink-soft)] leading-relaxed">Cocok untuk kamu yang baru mulai maupun yang sudah belajar sendiri tapi masih bingung arah.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CURRICULUM CAROUSEL ============ -->
+<section id="materi" class="py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="reveal max-w-xl">
+        <p class="text-sm font-semibold text-[var(--primary-dark)]">Roadmap 3 bulan</p>
+        <h2 class="mt-3 font-display font-bold text-3xl md:text-[2.1rem] leading-tight text-[var(--ink)]">
+          Apa yang akan kamu pelajari?
+        </h2>
+        <p class="mt-3 text-[var(--ink-soft)]">Geser untuk melihat seluruh modul.</p>
+      </div>
+      <div class="reveal flex items-center gap-3">
+        <button id="curBtnPrev" class="carousel-btn" aria-label="Sebelumnya">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#1D2230" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="curBtnNext" class="carousel-btn" aria-label="Berikutnya">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#1D2230" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="curriculumCarousel" class="carousel mt-10">
+      <div class="card p-7 w-[280px] sm:w-[320px]">
+        <span class="font-display font-bold text-[var(--primary)] text-2xl">01</span>
+        <h3 class="mt-4 font-display font-semibold text-lg text-[var(--ink)]">Tren teknologi web yang relevan saat ini</h3>
+        <p class="mt-2 text-sm text-[var(--ink-soft)] leading-relaxed">Fokus belajar ke skill yang memang masih relevan dan banyak dipakai di industri.</p>
+      </div>
+      <div class="card p-7 w-[280px] sm:w-[320px]">
+        <span class="font-display font-bold text-[var(--primary)] text-2xl">02</span>
+        <h3 class="mt-4 font-display font-semibold text-lg text-[var(--ink)]">Strategi belajar tanpa latar belakang IT</h3>
+        <p class="mt-2 text-sm text-[var(--ink-soft)] leading-relaxed">Langkah realistis untuk mulai belajar meski kamu bukan lulusan IT.</p>
+      </div>
+      <div class="card p-7 w-[280px] sm:w-[320px]">
+        <span class="font-display font-bold text-[var(--primary)] text-2xl">03</span>
+        <h3 class="mt-4 font-display font-semibold text-lg text-[var(--ink)]">Roadmap 3 bulan menuju portofolio pertama</h3>
+        <p class="mt-2 text-sm text-[var(--ink-soft)] leading-relaxed">Tahapan belajar yang jelas supaya kamu punya proyek nyata untuk ditunjukkan.</p>
+      </div>
+      <div class="card p-7 w-[280px] sm:w-[320px]">
+        <span class="font-display font-bold text-[var(--primary)] text-2xl">04</span>
+        <h3 class="mt-4 font-display font-semibold text-lg text-[var(--ink)]">Persiapan mencari peluang kerja</h3>
+        <p class="mt-2 text-sm text-[var(--ink-soft)] leading-relaxed">Tips menyusun CV dan portofolio, serta gambaran proses melamar kerja di bidang ini.</p>
+      </div>
+      <div class="card p-7 w-[280px] sm:w-[320px]">
+        <span class="font-display font-bold text-[var(--primary)] text-2xl">05</span>
+        <h3 class="mt-4 font-display font-semibold text-lg text-[var(--ink)]">Studi kasus dari pengalaman mentor</h3>
+        <p class="mt-2 text-sm text-[var(--ink-soft)] leading-relaxed">Cerita nyata proses belajar dan bekerja mentor, lengkap dengan pelajaran yang bisa kamu ambil.</p>
+      </div>
+    </div>
+
+    <div id="curDots" class="flex items-center justify-center gap-2 mt-8"></div>
+  </div>
+</section>
+
+<!-- ============ PROOF SLIDER ============ -->
+<section id="bukti" class="py-20 md:py-28 bg-[var(--bg-soft)] border-y border-[var(--line)]">
+  <div class="max-w-4xl mx-auto px-5 md:px-8 text-center">
+    <p class="text-sm font-semibold text-[var(--primary-dark)] reveal">Cerita dari mentor kami</p>
+    <h2 class="mt-3 font-display font-bold text-3xl md:text-[2.1rem] leading-tight text-[var(--ink)] reveal">
+      Pengalaman nyata, bukan sekadar teori
+    </h2>
+    <p class="mt-5 text-[var(--ink-soft)] leading-relaxed max-w-xl mx-auto reveal">
+      Materi di kelas ini disusun dari pengalaman langsung mentor yang sudah bekerja di bidang web programming.
+    </p>
+  </div>
+
+  <div class="max-w-2xl mx-auto mt-12 px-5 reveal-scale">
+    <div class="relative">
+      <div id="proofSlider" class="carousel rounded-[22px]">
+        <div class="card overflow-hidden w-full">
+          <img src="https://ahademycode.com/wp-content/uploads/2024/05/bukti-1.png" alt="Contoh pengalaman salah satu mentor Ahademy Code" class="w-full block">
+          <div class="px-6 py-5 border-t border-[var(--line)]">
+            <p class="text-sm text-[var(--ink-soft)]">Salah satu contoh pengalaman mentor kami di bidang web programming. Hasil tiap orang berbeda, tergantung usaha dan proses belajar masing-masing.</p>
+          </div>
+        </div>
+        <div class="card overflow-hidden w-full">
+          <img src="https://ahademycode.com/wp-content/uploads/2024/05/Terima-Duit.jpg" alt="Contoh pengalaman kerja salah satu mentor Ahademy Code" class="w-full block">
+          <div class="px-6 py-5 border-t border-[var(--line)]">
+            <p class="text-sm text-[var(--ink-soft)]">Studi kasus pribadi dari mentor kami, dibagikan sebagai gambaran proses — bukan jaminan hasil yang sama untuk setiap peserta.</p>
+          </div>
+        </div>
+      </div>
+      <button id="proofPrev" class="carousel-btn absolute left-2 top-[38%] -translate-y-1/2 hidden sm:flex" aria-label="Sebelumnya">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#1D2230" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button id="proofNext" class="carousel-btn absolute right-2 top-[38%] -translate-y-1/2 hidden sm:flex" aria-label="Berikutnya">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#1D2230" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div id="proofDots" class="flex items-center justify-center gap-2 mt-6"></div>
+  </div>
+</section>
+
+<!-- ============ MENTOR ============ -->
+<section class="py-20 md:py-28">
+  <div class="max-w-3xl mx-auto px-5 md:px-8 text-center reveal">
+    <p class="text-sm font-semibold text-[var(--primary-dark)]">Tentang mentor</p>
+    <h2 class="mt-3 font-display font-bold text-3xl md:text-[2.1rem] leading-tight text-[var(--ink)]">
+      Diajar langsung oleh praktisi
+    </h2>
+    <p class="mt-6 text-xl md:text-2xl text-[var(--ink)] leading-relaxed font-display font-medium">
+      "Mentor kami adalah praktisi yang benar-benar menjalani sendiri proses belajar dan bekerja di bidang web programming — bukan sekadar pengajar yang hanya menyampaikan teori."
+    </p>
+    <p class="mt-6 text-sm text-[var(--ink-soft)]">
+      Semua studi kasus yang dibagikan berasal dari pengalaman nyata, lengkap dengan cerita proses di baliknya.
+    </p>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="harga" class="py-20 md:py-28 bg-[var(--bg-soft)] border-y border-[var(--line)]">
+  <div class="max-w-3xl mx-auto px-5 md:px-8">
+    <div class="text-center reveal">
+      <p class="text-sm font-semibold text-[var(--primary-dark)]">Penawaran kelas</p>
+      <h2 class="mt-3 font-display font-bold text-3xl md:text-[2.1rem] text-[var(--ink)]">Investasi belajar yang terjangkau</h2>
+      <p class="mt-4 text-[var(--ink-soft)]">Satu langkah kecil untuk mulai belajar dengan arah yang lebih jelas.</p>
+    </div>
+
+    <div class="reveal mt-10 card overflow-hidden">
+      <div class="p-6 md:p-9">
+        <div class="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--line)] pb-6">
+          <div>
+            <p class="text-xs text-[var(--ink-soft)] uppercase tracking-wide">Program</p>
+            <p class="font-display font-bold text-xl text-[var(--ink)]">Web Programming Hack</p>
+          </div>
+          <div class="text-right">
+            <p class="text-xs text-[var(--ink-soft)] uppercase tracking-wide">Harga</p>
+            <p class="text-sm text-[var(--ink-soft)] line-through">Rp250.000</p>
+            <p class="font-display font-bold text-3xl text-[var(--primary-dark)]">Rp99.000</p>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 mt-6">
+          <div class="flex items-start gap-3">
+            <svg class="icon-check mt-0.5" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="text-sm text-[var(--ink-soft)]">Kuota terbatas, <strong class="text-[var(--ink)]">50 peserta per sesi</strong></p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="icon-check mt-0.5" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="text-sm text-[var(--ink-soft)]">Garansi uang kembali <strong class="text-[var(--ink)]">100%</strong></p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="icon-check mt-0.5" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="text-sm text-[var(--ink-soft)]">Materi & studi kasus dari praktisi</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="icon-check mt-0.5" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="text-sm text-[var(--ink-soft)]">Ramah untuk pemula tanpa latar IT</p>
+          </div>
+        </div>
+
+        <a href="https://order.ahademycode.com/wph-1" target="_blank" rel="noopener"
+           class="btn-primary mt-8 w-full inline-flex items-center justify-center gap-2 font-semibold px-7 py-4 rounded-full text-[15px]">
+          Daftar Sekarang
+        </a>
+        <p class="text-center text-xs text-[var(--ink-soft)] mt-3">Kuota kelas terbatas per sesi dan menyesuaikan ketersediaan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-20 md:py-28">
+  <div class="max-w-2xl mx-auto px-5 md:px-8">
+    <p class="text-sm font-semibold text-[var(--primary-dark)] reveal">FAQ</p>
+    <h2 class="mt-3 font-display font-bold text-3xl md:text-[2.1rem] text-[var(--ink)] reveal">Pertanyaan yang sering ditanyakan</h2>
+
+    <div class="mt-10 space-y-3" id="faqList">
+      <div class="reveal card overflow-hidden">
+        <button class="faq-q w-full text-left px-6 py-4.5 py-4 flex items-center justify-between gap-4">
+          <span class="font-medium text-[var(--ink)]">Saya masih pemula, apa bisa ikut?</span>
+          <svg class="faq-icon shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#4F46E5" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a px-6 text-sm text-[var(--ink-soft)] leading-relaxed">
+          <p class="pb-4">Bisa. Materi disusun dari dasar, tanpa asumsi kamu sudah punya pengalaman coding sebelumnya.</p>
+        </div>
+      </div>
+      <div class="reveal card overflow-hidden">
+        <button class="faq-q w-full text-left px-6 py-4 flex items-center justify-between gap-4">
+          <span class="font-medium text-[var(--ink)]">Apakah perlu laptop spesifikasi tinggi?</span>
+          <svg class="faq-icon shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#4F46E5" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a px-6 text-sm text-[var(--ink-soft)] leading-relaxed">
+          <p class="pb-4">Tidak. Laptop standar untuk pemakaian sehari-hari sudah cukup untuk mulai belajar.</p>
+        </div>
+      </div>
+      <div class="reveal card overflow-hidden">
+        <button class="faq-q w-full text-left px-6 py-4 flex items-center justify-between gap-4">
+          <span class="font-medium text-[var(--ink)]">Apakah dijamin langsung dapat kerja setelah kelas selesai?</span>
+          <svg class="faq-icon shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#4F46E5" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a px-6 text-sm text-[var(--ink-soft)] leading-relaxed">
+          <p class="pb-4">Tidak ada jaminan pekerjaan otomatis. Kelas ini membantumu membangun dasar, roadmap belajar, dan portofolio awal — hasil akhirnya tetap tergantung usaha dan proses belajar masing-masing peserta.</p>
+        </div>
+      </div>
+      <div class="reveal card overflow-hidden">
+        <button class="faq-q w-full text-left px-6 py-4 flex items-center justify-between gap-4">
+          <span class="font-medium text-[var(--ink)]">Bagaimana jika materinya tidak sesuai ekspektasi?</span>
+          <svg class="faq-icon shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#4F46E5" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a px-6 text-sm text-[var(--ink-soft)] leading-relaxed">
+          <p class="pb-4">Tersedia garansi uang kembali 100%.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="py-20 md:py-28 hero-glow border-t border-[var(--line)]">
+  <div class="max-w-2xl mx-auto px-5 md:px-8 text-center reveal">
+    <h2 class="font-display font-bold text-3xl md:text-[2.1rem] leading-tight text-[var(--ink)]">Mulai langkah belajarmu hari ini</h2>
+    <p class="mt-4 text-[var(--ink-soft)] leading-relaxed">
+      Kuota kelas terbatas per sesi. Daftar sekarang untuk belajar dengan roadmap yang jelas, langsung dari pengalaman praktisi.
+    </p>
+    <a href="https://order.ahademycode.com/wph-1" target="_blank" rel="noopener"
+       class="btn-primary mt-8 inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-full text-[15px]">
+      Daftar Sekarang
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-10 border-t border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--ink-soft)]">
+    <div class="text-center sm:text-left">
+      <p>Ahademy Code — Kursus Web Programming Online</p>
+      <p class="mt-1">Pluit Karang Permai III F9 U 15 · Sebuah brand dari PT Saint Technologies Indonesia</p>
+    </div>
+    <p>© 2026 Ahademy Code. All Right Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const els = document.querySelectorAll('.reveal, .reveal-scale');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(el => io.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector('.faq-icon');
+      const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+      document.querySelectorAll('.faq-a').forEach(a => a.style.maxHeight = '0px');
+      document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+      if(!isOpen){
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.style.transform = 'rotate(45deg)';
+      }
+    });
+  });
+
+  // count-up stats
+  const counters = document.querySelectorAll('.stat-num');
+  const countIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const el = e.target;
+        const target = parseInt(el.dataset.count, 10);
+        const dur = 1000;
+        const start = performance.now();
+        function step(now){
+          const p = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(eased * target);
+          if(p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        countIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => countIO.observe(c));
+
+  // generic carousel builder (buttons + dots, drag/scroll aware)
+  function initCarousel(trackId, dotsId, prevId, nextId){
+    const track = document.getElementById(trackId);
+    const dotsWrap = document.getElementById(dotsId);
+    const prevBtn = prevId ? document.getElementById(prevId) : null;
+    const nextBtn = nextId ? document.getElementById(nextId) : null;
+    if(!track) return;
+    const items = Array.from(track.children);
+    if(dotsWrap){
+      items.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Slide ' + (i+1));
+        d.addEventListener('click', () => {
+          items[i].scrollIntoView({ behavior:'smooth', inline:'start', block:'nearest' });
+        });
+        dotsWrap.appendChild(d);
+      });
+    }
+    function updateActive(){
+      const trackRect = track.getBoundingClientRect();
+      let closest = 0, closestDist = Infinity;
+      items.forEach((it, i) => {
+        const r = it.getBoundingClientRect();
+        const dist = Math.abs(r.left - trackRect.left);
+        if(dist < closestDist){ closestDist = dist; closest = i; }
+      });
+      if(dotsWrap){
+        Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === closest));
+      }
+      if(prevBtn) prevBtn.disabled = closest === 0;
+      if(nextBtn) nextBtn.disabled = closest === items.length - 1;
+    }
+    track.addEventListener('scroll', () => { window.requestAnimationFrame(updateActive); }, { passive:true });
+    if(prevBtn) prevBtn.addEventListener('click', () => {
+      const idx = Array.from(dotsWrap ? dotsWrap.children : []).findIndex(d => d.classList.contains('active'));
+      const target = Math.max(idx - 1, 0);
+      items[target].scrollIntoView({ behavior:'smooth', inline:'start', block:'nearest' });
+    });
+    if(nextBtn) nextBtn.addEventListener('click', () => {
+      const idx = Array.from(dotsWrap ? dotsWrap.children : []).findIndex(d => d.classList.contains('active'));
+      const target = Math.min(idx + 1, items.length - 1);
+      items[target].scrollIntoView({ behavior:'smooth', inline:'start', block:'nearest' });
+    });
+    updateActive();
+  }
+  initCarousel('curriculumCarousel', 'curDots', 'curBtnPrev', 'curBtnNext');
+  initCarousel('proofSlider', 'proofDots', 'proofPrev', 'proofNext');
+
+  // active section pill nav
+  const sections = ['top','solusi','materi','bukti','harga','faq'].map(id => document.getElementById(id)).filter(Boolean);
+  const navLinks = Array.from(document.querySelectorAll('.pill-nav a'));
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.dataset.nav === id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  sections.forEach(s => navIO.observe(s));
+</script>
+
+</body>
+</html>
